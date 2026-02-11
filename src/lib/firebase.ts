@@ -12,11 +12,16 @@ const firebaseConfig = {
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
+import { Auth } from "firebase/auth";
+import { Firestore } from "firebase/firestore";
+import { FirebaseStorage } from "firebase/storage";
+import { FirebaseApp } from "firebase/app";
+
 // Initialize Firebase
-let app;
-let auth;
-let db;
-let storage;
+let app: FirebaseApp | undefined;
+let auth: Auth | undefined;
+let db: Firestore | undefined;
+let storage: FirebaseStorage | undefined;
 
 try {
     if (typeof window !== "undefined" || process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
@@ -29,4 +34,5 @@ try {
     console.warn("Firebase initialization failed (expected during build if env vars are missing):", error);
 }
 
+// Export with types so consumers don't get 'any' errors
 export { app, auth, db, storage };
