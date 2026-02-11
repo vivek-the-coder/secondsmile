@@ -30,8 +30,10 @@ export default function OrdersPage() {
         if (!authLoading && user) {
             async function fetchOrders() {
                 try {
-                    const data = await orderService.getUserOrders(user.uid);
-                    setOrders(data);
+                    if (user?.uid) {
+                        const data = await orderService.getUserOrders(user.uid);
+                        setOrders(data);
+                    }
                 } catch (error) {
                     console.error("Error fetching orders:", error);
                 } finally {
