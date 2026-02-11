@@ -4,9 +4,9 @@ import Link from "next/link";
 
 export function WhimsyFooter() {
     return (
-        <footer className="bg-[#121212] pt-32 pb-12 overflow-hidden border-t border-white/5">
+        <footer className="bg-[#121212] pt-16 md:pt-32 pb-8 md:pb-12 overflow-hidden border-t border-white/5">
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-32">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-12 md:mb-32">
                     <div className="space-y-6">
                         <h4 className="text-[11px] font-black uppercase tracking-[0.3em] text-white">Quick Links</h4>
                         <ul className="space-y-4">
@@ -36,8 +36,8 @@ export function WhimsyFooter() {
                 </div>
 
                 {/* Bottom Branding */}
-                <div className="container mx-auto px-6 mt-32 pt-16 border-t border-white/5 text-center">
-                    <h2 className="text-[100px] md:text-[170px] font-black font-luckiest uppercase leading-none tracking-tighter select-none pointer-events-none" style={{ color: "#3A2A00", opacity: 0.3, fontWeight: 900 }}>
+                <div className="container mx-auto px-6 mt-12 md:mt-32 pt-16 border-t border-white/5 text-center">
+                    <h2 className="text-[12vw] md:text-[170px] font-black font-luckiest uppercase leading-none tracking-tighter select-none pointer-events-none" style={{ color: "#3A2A00", opacity: 0.3, fontWeight: 900 }}>
                         SecondSmile
                     </h2>
                     <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-[11px] font-medium text-[#B5B5B5] uppercase tracking-widest">

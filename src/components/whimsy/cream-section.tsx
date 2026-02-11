@@ -7,13 +7,13 @@ import { FOR_YOUNGEST_PRODUCTS } from "@/lib/keedos-data";
 
 export function WhimsyCreamSection() {
     return (
-        <section className="relative py-48 bg-[#F7EEDF] overflow-hidden noise-pattern">
+        <section className="relative py-24 md:py-48 bg-[#F7EEDF] overflow-hidden noise-pattern">
             {/* Waves */}
             <div className="absolute top-0 left-0 right-0 h-10 bg-[#121212] mask-scallop-top z-30"></div>
             <div className="absolute bottom-0 left-0 right-0 h-10 bg-[#121212] mask-scallop-bottom z-30 transform rotate-180"></div>
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="text-center mb-20 animate-fade-in-up">
+                <div className="text-center mb-12 md:mb-20 animate-fade-in-up">
                     <h2 className="text-4xl md:text-6xl font-black font-luckiest uppercase tracking-wide mb-4"
                         style={{
                             color: "#F4B400",

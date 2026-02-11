@@ -24,7 +24,7 @@ export function WhimsyHero() {
             style={{ marginLeft: "calc(50% - 50vw)" }}
         >
             <section
-                className="relative z-10 h-screen min-h-[700px] flex items-center justify-center text-center noise-pattern"
+                className="relative z-10 h-[100dvh] min-h-[500px] md:min-h-[700px] flex items-center justify-center text-center noise-pattern"
             >
                 {/* Video Background */}
                 <div className="absolute inset-0 z-0 bg-black">
@@ -69,7 +69,7 @@ export function WhimsyHero() {
                         <h1
                             className="font-black font-luckiest uppercase tracking-widest mb-[20px]"
                             style={{
-                                fontSize: "clamp(36px, 5vw, 72px)",
+                                fontSize: "clamp(32px, 8vw, 72px)",
                                 lineHeight: "1.1",
                                 color: "#FFF8E6",
                                 textShadow: "0 4px 20px rgba(0,0,0,0.25)",
@@ -92,22 +92,20 @@ export function WhimsyHero() {
                         <div className="flex flex-col md:flex-row gap-4 justify-center mt-[10px]">
                             <Link
                                 href="/shop"
-                                className="inline-flex items-center gap-2 text-[#1a1a1a] font-black text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl"
+                                className="inline-flex items-center gap-2 text-[#1a1a1a] font-black text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl px-8 py-4 md:px-12 md:py-5"
                                 style={{
                                     background: "linear-gradient(135deg, #ffcc33, #f2a900)",
                                     boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
                                     borderRadius: "50px",
-                                    padding: "18px 48px"
                                 }}
                             >
                                 Browse Toys <ArrowRight className="w-5 h-5" />
                             </Link>
                             <Link
                                 href="/sell"
-                                className="inline-flex items-center gap-2 text-white font-bold text-lg transition-all duration-300 border-2 border-white/30 hover:border-white/80 hover:bg-white/10 backdrop-blur-md"
+                                className="inline-flex items-center gap-2 text-white font-bold text-lg transition-all duration-300 border-2 border-white/30 hover:border-white/80 hover:bg-white/10 backdrop-blur-md px-8 py-4 md:px-10 md:py-4"
                                 style={{
                                     borderRadius: "50px",
-                                    padding: "16px 42px",
                                     textShadow: "0 2px 10px rgba(0,0,0,0.2)"
                                 }}
                             >
@@ -116,7 +114,7 @@ export function WhimsyHero() {
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     );
 }

@@ -23,7 +23,7 @@ export function WhimsyNavbar() {
             <div className="container mx-auto px-6 h-20 flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 group z-50">
-                    <span className="text-3xl font-black font-luckiest text-white tracking-[-0.05em] uppercase drop-shadow-sm group-hover:scale-105 transition-transform">
+                    <span className="text-2xl md:text-3xl font-black font-luckiest text-white tracking-[-0.05em] uppercase drop-shadow-sm group-hover:scale-105 transition-transform">
                         SecondSmile
                     </span>
                 </Link>
@@ -71,7 +71,7 @@ export function WhimsyNavbar() {
 
                 {/* Mobile Menu Overlay */}
                 <div className={cn(
-                    "fixed inset-0 bg-[#F4B400] z-40 flex flex-col pt-32 px-6 transition-transform duration-300 lg:hidden",
+                    "fixed inset-0 bg-[#F4B400] z-40 flex flex-col pt-24 px-6 transition-transform duration-300 lg:hidden",
                     isOpen ? "translate-x-0" : "translate-x-full"
                 )}>
                     <div className="flex flex-col gap-6">

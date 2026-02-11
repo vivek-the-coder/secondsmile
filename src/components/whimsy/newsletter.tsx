@@ -2,13 +2,13 @@ import Image from "next/image";
 
 export function WhimsyNewsletter() {
     return (
-        <section className="relative py-48 bg-[#F7EEDF] overflow-hidden">
+        <section className="relative py-24 md:py-48 bg-[#F7EEDF] overflow-hidden">
             {/* Scalloped waves transition */}
             <div className="absolute top-0 left-0 right-0 h-10 bg-[#121212] mask-scallop-top z-30"></div>
             <div className="absolute bottom-0 left-0 right-0 h-10 bg-[#121212] mask-scallop-bottom z-30 transform rotate-180"></div>
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
+                <div className="flex flex-col lg:flex-row items-center gap-12 md:gap-16 lg:gap-32">
                     {/* Rotated Visual Visual Block with Depth */}
                     <div
                         className="flex-1 relative w-full aspect-[4/3] rounded-[48px] overflow-hidden border-[12px] border-white/20 rotate-[-4deg] flex items-center justify-center group"
@@ -27,7 +27,7 @@ export function WhimsyNewsletter() {
                         <div className="absolute inset-0 bg-gradient-to-tr from-black/10 to-transparent pointer-events-none" />
                     </div>
 
-                    <div className="flex-1 text-left p-[60px] rounded-[24px]" style={{
+                    <div className="flex-1 text-left p-8 md:p-[60px] rounded-[24px]" style={{
                         background: "#FFF6E6",
                         boxShadow: "0 10px 30px rgba(0,0,0,0.05)"
                     }}>

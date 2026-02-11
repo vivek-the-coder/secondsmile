@@ -4,11 +4,11 @@ import Image from "next/image";
 
 export function WhimsyStorySection() {
     return (
-        <section className="py-24 bg-[#121212] overflow-hidden noise-pattern">
+        <section className="py-12 md:py-24 bg-[#121212] overflow-hidden noise-pattern">
             <div className="container mx-auto px-6">
-                <div className="flex flex-col lg:flex-row items-center gap-16">
+                <div className="flex flex-col lg:flex-row items-center gap-12 md:gap-16">
                     <div className="flex-1 text-left">
-                        <h2 className="text-5xl md:text-[80px] font-black font-luckiest uppercase tracking-[0.5px] mb-8 leading-[0.85] text-layered-white" style={{ color: "#FFF3C4" }}>
+                        <h2 className="text-4xl md:text-[80px] font-black font-luckiest uppercase tracking-[0.5px] mb-8 leading-[0.85] text-layered-white" style={{ color: "#FFF3C4" }}>
                             Why We Created<br />SecondSmile
                         </h2>
                         <div className="space-y-6 max-w-lg">
