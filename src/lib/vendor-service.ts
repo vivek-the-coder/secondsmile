@@ -26,10 +26,16 @@ export interface Store {
     createdAt: any;
 }
 
+const checkDb = () => {
+    if (!db) throw new Error("Firebase DB not initialized");
+    return db;
+};
+
 export const vendorService = {
     // Register a new vendor/store
     async registerVendor(userId: string, storeData: Omit<Store, "id" | "ownerId" | "status" | "createdAt">): Promise<string> {
-        const storeRef = await addDoc(collection(db, STORES_COLLECTION), {
+        const database = checkDb();
+        const storeRef = await addDoc(collection(database, STORES_COLLECTION), {
             ...storeData,
             ownerId: userId,
             status: "pending",
@@ -37,7 +43,7 @@ export const vendorService = {
         });
 
         // Update user's vendor status
-        await updateDoc(doc(db, "users", userId), {
+        await updateDoc(doc(database, "users", userId), {
             vendorStatus: "pending"
         });
 
@@ -46,7 +52,8 @@ export const vendorService = {
 
     // Get store by owner ID
     async getStoreByOwner(userId: string): Promise<Store | null> {
-        const q = query(collection(db, STORES_COLLECTION), where("ownerId", "==", userId));
+        const database = checkDb();
+        const q = query(collection(database, STORES_COLLECTION), where("ownerId", "==", userId));
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
@@ -58,7 +65,8 @@ export const vendorService = {
 
     // Get store by Store ID
     async getStoreById(storeId: string): Promise<Store | null> {
-        const docSnap = await getDoc(doc(db, STORES_COLLECTION, storeId));
+        const database = checkDb();
+        const docSnap = await getDoc(doc(database, STORES_COLLECTION, storeId));
         if (docSnap.exists()) {
             return { id: docSnap.id, ...docSnap.data() } as Store;
         }
@@ -67,7 +75,8 @@ export const vendorService = {
 
     // Get all products for a store
     async getStoreProducts(ownerId: string): Promise<Toy[]> {
-        const q = query(collection(db, "toys"), where("ownerId", "==", ownerId));
+        const database = checkDb();
+        const q = query(collection(database, "toys"), where("ownerId", "==", ownerId));
         const querySnapshot = await getDocs(q);
         return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Toy));
     }

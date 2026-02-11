@@ -13,10 +13,16 @@ import { Order } from "@/types/order";
 
 const ORDERS_COLLECTION = "orders";
 
+const checkDb = () => {
+    if (!db) throw new Error("Firebase DB not initialized");
+    return db;
+};
+
 export const orderService = {
     // Create a new order
     async createOrder(orderData: Omit<Order, "id" | "createdAt" | "updatedAt">): Promise<string> {
-        const docRef = await addDoc(collection(db, ORDERS_COLLECTION), {
+        const database = checkDb();
+        const docRef = await addDoc(collection(database, ORDERS_COLLECTION), {
             ...orderData,
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp(),
@@ -26,8 +32,9 @@ export const orderService = {
 
     // Fetch orders for a specific user (buyer)
     async getUserOrders(userId: string): Promise<Order[]> {
+        const database = checkDb();
         const q = query(
-            collection(db, ORDERS_COLLECTION),
+            collection(database, ORDERS_COLLECTION),
             where("buyerId", "==", userId),
             orderBy("createdAt", "desc")
         );
@@ -41,8 +48,9 @@ export const orderService = {
 
     // Fetch orders where this user is the seller
     async getVendorOrders(userId: string): Promise<Order[]> {
+        const database = checkDb();
         const q = query(
-            collection(db, ORDERS_COLLECTION),
+            collection(database, ORDERS_COLLECTION),
             where("sellerId", "==", userId),
             orderBy("createdAt", "desc")
         );
@@ -56,8 +64,9 @@ export const orderService = {
 
     // Prevent double booking for rentals
     async checkAvailability(toyId: string, startDate: string, endDate: string): Promise<boolean> {
+        const database = checkDb();
         const q = query(
-            collection(db, ORDERS_COLLECTION),
+            collection(database, ORDERS_COLLECTION),
             where("toyId", "==", toyId),
             where("type", "==", "rent"),
             where("status", "not-in", ["cancelled", "rejected"])
