@@ -32,11 +32,11 @@ export function WhimsyNewsletter() {
                         boxShadow: "0 10px 30px rgba(0,0,0,0.05)"
                     }}>
                         <h2 className="text-4xl md:text-5xl font-extrabold font-luckiest uppercase tracking-[0.5px] mb-4 leading-tight text-layered" style={{ color: "#d75151ff" }}>
-                            Sign Up & Get <span style={{ color: "#F4B400" }}>20% Off</span>
+                            Join the <span style={{ color: "#F4B400" }}>Community</span>
                         </h2>
 
                         <p className="text-[#5A5A5A] font-medium text-[16px] leading-relaxed mb-10 max-w-[420px]">
-                            Join our world of play and get special surprises directly to your inbox.
+                            Get updates on new toy listings, safety tips, and smart ways to save on playtime.
                         </p>
 
                         <div className="flex flex-col md:flex-row gap-4 items-stretch">
@@ -58,7 +58,7 @@ export function WhimsyNewsletter() {
                                     boxShadow: "0 8px 18px rgba(0,0,0,0.15)"
                                 }}
                             >
-                                Submit
+                                Join Now
                             </button>
                         </div>
                     </div>

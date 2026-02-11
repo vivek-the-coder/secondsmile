@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { WhimsyHero } from "@/components/whimsy/hero";
 import { WhimsyCategoryGrid } from "@/components/whimsy/category-grid";
 import { KeedosProductSection } from "@/components/keedos-home";
@@ -15,17 +16,18 @@ import { KEEDOS_POPULAR_PRODUCTS, KEEDOS_DEALS_PRODUCTS } from "@/lib/keedos-dat
 export default function HomePage() {
   return (
     <div className="bg-[#121212] min-h-screen">
-      {/* Whimsy Custom Navbar */}
+      {/* Brand Navbar */}
       <WhimsyNavbar />
 
       {/* Hero: High-fidelity entry */}
       <WhimsyHero />
 
-      {/* Product Discovery: Top Playtime Picks */}
+      {/* Product Discovery: Recently Listed Toys */}
       <section className="py-24 bg-[#121212]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-24">
-            <h2 className="text-4xl md:text-5xl font-bold font-luckiest uppercase tracking-[1px]" style={{ color: "#FFE3A3" }}>TOP PLAYTIME PICKS</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-luckiest uppercase tracking-[1px]" style={{ color: "#FFE3A3" }}>Recently Listed Toys</h2>
+            <p className="text-[#C2C2C2] mt-4 font-medium uppercase tracking-[2px] text-sm">Real items from families near you</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {KEEDOS_POPULAR_PRODUCTS.slice(0, 6).map((toy, idx) => {
@@ -34,9 +36,9 @@ export default function HomePage() {
             })}
           </div>
           <div className="mt-16 text-center">
-            <button className="bg-[#F4B400] text-[#121212] px-16 py-6 rounded-full font-bold text-xs uppercase tracking-[1px] hover:bg-[#FFD465] transition-all shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] active:translate-y-1">
-              VIEW ALL TOYS
-            </button>
+            <Link href="/shop" className="bg-[#F4B400] text-[#121212] px-16 py-6 rounded-full font-bold text-xs uppercase tracking-[1px] hover:bg-[#FFD465] transition-all shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)] active:translate-y-1 inline-block">
+              View All Toys
+            </Link>
           </div>
         </div>
       </section>
@@ -57,7 +59,7 @@ export default function HomePage() {
       <section className="py-24 bg-[#121212]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-24">
-            <h2 className="text-4xl md:text-5xl font-bold font-luckiest uppercase tracking-[1px]" style={{ color: "#FFE3A3" }}>OUR MOST POPULAR PICKS</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-luckiest uppercase tracking-[1px]" style={{ color: "#FFE3A3" }}>Most Loved by Families</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {KEEDOS_DEALS_PRODUCTS.slice(0, 4).map((toy, idx) => {
@@ -66,9 +68,9 @@ export default function HomePage() {
             })}
           </div>
           <div className="mt-16 text-center">
-            <button className="bg-[#F4B400] text-[#121212] px-12 py-5 rounded-full font-bold text-xs uppercase tracking-[1px] hover:bg-[#FFD465] transition-all shadow-xl active:translate-y-1">
+            <Link href="/shop" className="bg-[#F4B400] text-[#121212] px-12 py-5 rounded-full font-bold text-xs uppercase tracking-[1px] hover:bg-[#FFD465] transition-all shadow-xl active:translate-y-1 inline-block">
               View All Toys
-            </button>
+            </Link>
           </div>
         </div>
       </section>

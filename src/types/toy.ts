@@ -1,5 +1,5 @@
-export type ToyType = 'new' | 'used' | 'rental';
-export type ToyCondition = 'New' | 'Like New' | 'Good' | 'Acceptable';
+export type ToyType = 'sale' | 'rental' | 'both';
+export type ToyCondition = 'New' | 'Like New' | 'Good' | 'Acceptable' | 'Used';
 
 export interface Toy {
     id: string;

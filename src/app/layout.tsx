@@ -36,7 +36,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${fredoka.variable} ${luckiestGuy.variable} font-body antialiased`}>
         <AuthProvider>
-          <Navbar />
+          {/* <Navbar /> removed to avoid double navbar on home page */}
           <main>{children}</main>
         </AuthProvider>
       </body>

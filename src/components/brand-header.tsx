@@ -19,33 +19,40 @@ export function BrandHeader() {
                             <Box className="w-6 h-6" />
                         </div>
                         <span className="text-2xl font-black tracking-tighter text-[#0F172A] font-heading">
-                            Toy<span className="text-[#5B5FEF]">Store</span>
+                            Second<span className="text-[#5B5FEF]">Smile</span>
                         </span>
                     </Link>
 
-                    {/* Search */}
-                    <div className="hidden md:flex flex-1 max-w-xl relative">
-                        <div className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400">
+                    {/* Desktop Navigation */}
+                    <div className="hidden lg:flex items-center gap-8">
+                        <NavLink href="/shop" label="Browse Toys" />
+                        <NavLink href="/rent-toys" label="Rent Toys" />
+                        <NavLink href="/sell" label="Sell Your Toy" highlight />
+                        <NavLink href="/safety" label="Safety" />
+                    </div>
+
+                    {/* Search - Compact */}
+                    <div className="hidden md:flex flex-1 max-w-sm relative ml-auto mr-4">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
                             <Search className="w-4 h-4" />
                         </div>
                         <input
                             type="text"
-                            placeholder="Search by age, brand, or skill..."
-                            className="w-full bg-slate-50 border-none rounded-2xl pl-12 pr-4 py-3.5 text-sm font-bold focus:ring-[6px] focus:ring-indigo-50 transition-all font-body text-slate-700"
+                            placeholder="Find toys..."
+                            className="w-full bg-slate-50 border-none rounded-full pl-10 pr-4 py-2.5 text-sm font-bold focus:ring-2 focus:ring-indigo-50 transition-all font-body text-slate-700"
                             suppressHydrationWarning
                         />
                     </div>
 
                     {/* Actions */}
                     <div className="flex items-center gap-2">
-                        <div className="hidden lg:flex items-center gap-6 mr-6 border-r border-slate-100 pr-6 uppercase tracking-widest text-[10px] font-black text-slate-400">
-                            <Link href="/sell" className="hover:text-indigo-600 transition-colors">Sell a Toy</Link>
-                            <Link href="/orders" className="hover:text-indigo-600 transition-colors">My Orders</Link>
-                        </div>
+                        <Link href="/sell" className="hidden sm:flex items-center justify-center h-10 px-6 rounded-full bg-yellow-400 text-slate-900 text-xs font-black uppercase tracking-wider hover:bg-yellow-300 transition-colors shadow-lg shadow-yellow-100 mr-2">
+                            List a Toy
+                        </Link>
 
                         <NavIconButton icon={Heart} />
                         <NavIconButton icon={ShoppingCart} badge={2} />
-                        <Link href="/profile" className="w-11 h-11 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 hover:bg-[#5B5FEF] hover:text-white transition-all ml-2 border border-slate-100 hover:border-[#5B5FEF]">
+                        <Link href="/profile" className="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center text-slate-400 hover:bg-[#5B5FEF] hover:text-white transition-all ml-1 border border-slate-100 hover:border-[#5B5FEF]">
                             <User className="w-5 h-5" />
                         </Link>
                     </div>

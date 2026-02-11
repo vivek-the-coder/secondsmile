@@ -3,117 +3,120 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { WhimsyWave } from "./wave";
 
-import { useState, useRef, useEffect } from "react";
-import { cn } from "@/lib/utils";
+
+import { useState, useRef } from "react";
 
 export function WhimsyHero() {
     const [showIntro, setShowIntro] = useState(true);
     const loopVideoRef = useRef<HTMLVideoElement>(null);
 
-    // Ensure loop video starts playing seamlessly when intro ends
-    useEffect(() => {
-        if (!showIntro && loopVideoRef.current) {
-            loopVideoRef.current.play().catch(e => console.log("Autoplay prevented:", e));
+    const handleIntroEnd = () => {
+        if (loopVideoRef.current) {
+            loopVideoRef.current.play();
         }
-    }, [showIntro]);
+        setShowIntro(false);
+    };
 
     return (
-        <section
-            className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-48 overflow-hidden noise-pattern"
-            style={{
-                // background: "radial-gradient(circle at 50% 40%, #FFD76A 0%, #F4B400 60%)"
-            }}
+        <div
+            className="w-screen relative"
+            style={{ marginLeft: "calc(50% - 50vw)" }}
         >
-            {/* Video Background */}
-            {/* Video Background */}
-            <div className="absolute inset-0 z-0">
-                {/* Intro Video - Plays once and hides */}
-                <video
-                    id="introVideo"
-                    autoPlay
-                    muted
-                    playsInline
-                    preload="metadata"
-                    poster="/images/hero-poster.jpg"
-                    className={cn("w-full h-full object-cover transition-opacity duration-500", !showIntro ? "opacity-0 invisible" : "opacity-100 visible")}
-                    onEnded={() => setShowIntro(false)}
-                >
-                    <source src="/images/intro-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
-                    <source src="/images/intro-small.webm" type="video/webm" />
-                    <source src="/images/intro-optimized-small.mp4" type="video/mp4" />
-                </video>
-
-                {/* Loop Video - Starts playing once intro ends */}
-                <video
-                    id="loopVideo"
-                    ref={loopVideoRef}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover absolute inset-0 -z-10"
-                >
-                    <source src="/images/Create_a_seamless_1080p_202602110102.mp4" type="video/mp4" />
-                </video>
-
-                {/* Overlays for Readability */}
-                <div className="absolute inset-0 z-10" style={{
-                    background: "radial-gradient(circle at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%)"
-                }} />
-            </div>
-            {/* Soft background blobs */}
-            <div className="absolute top-1/4 -left-20 w-96 h-96 bg-white/10 rounded-full blur-[120px] animate-pulse" />
-            <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-black/5 rounded-full blur-[120px]" />
-
-            <div className="container mx-auto px-6 relative z-10 text-center">
-                <div className="max-w-5xl mx-auto flex flex-col items-center transform -translate-y-10">
-                    <h1
-                        className="text-4xl md:text-[58px] font-black font-luckiest uppercase leading-[1.1] tracking-widest mb-6"
-                        style={{
-                            color: "#FFF8E6",
-                            textShadow: "0 12px 30px rgba(0,0,0,0.45)",
-                            letterSpacing: "1px"
-                        }}
+            <section
+                className="relative z-10 h-screen min-h-[700px] flex items-center justify-center text-center noise-pattern"
+            >
+                {/* Video Background */}
+                <div className="absolute inset-0 z-0 bg-black">
+                    {/* Loop Video - Sits behind and waits */}
+                    <video
+                        ref={loopVideoRef}
+                        id="loopVideo"
+                        muted
+                        loop
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover z-0"
                     >
-                        Where Little Dreams<br />Come to Life
-                    </h1>
+                        <source src="/images/Create_a_seamless_1080p_202602110102.mp4" type="video/mp4" />
+                    </video>
 
-                    <p className="text-lg md:text-[18px] font-medium mb-10 text-center" style={{
-                        color: "rgba(255, 245, 225, 0.92)",
-                        letterSpacing: "0.3px",
-                        maxWidth: "600px",
-                        margin: "16px auto 28px"
-                    }}>
-                        Beautiful toys designed to inspire imagination and joyful moments.
-                    </p>
-
-                    <Link
-                        href="/shop"
-                        className="inline-flex items-center gap-2 text-[#1a1a1a] px-10 py-4 font-semibold text-lg transition-all duration-300"
-                        style={{
-                            background: "linear-gradient(135deg, #ffcc33, #f2a900)",
-                            boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
-                            borderRadius: "50px",
-                            padding: "16px 42px"
-                        }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = "translateY(-3px)";
-                            e.currentTarget.style.boxShadow = "0 16px 40px rgba(0,0,0,0.45)";
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = "translateY(0)";
-                            e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.35)";
-                        }}
+                    {/* Intro Video - Plays once then fades out */}
+                    <video
+                        key="intro"
+                        id="introVideo"
+                        autoPlay
+                        muted
+                        playsInline
+                        preload="metadata"
+                        poster="/images/hero-poster.jpg"
+                        className={`absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-700 ${showIntro ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                        onEnded={handleIntroEnd}
                     >
-                        Explore Collection
-                    </Link>
+                        <source src="/images/intro-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
+                        <source src="/images/intro-small.webm" type="video/webm" />
+                        <source src="/images/intro-optimized-small.mp4" type="video/mp4" />
+                    </video>
+
+                    {/* Overlays for Readability */}
+                    <div className="absolute inset-0 z-10 bg-black/35" />
                 </div>
-            </div>
+                {/* Soft background blobs */}
+                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-white/10 rounded-full blur-[120px] animate-pulse" />
+                <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-black/5 rounded-full blur-[120px]" />
 
-            {/* Scalloped divider on bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-[#121212] mask-scallop-bottom z-10 transform rotate-180"></div>
-        </section>
+                <div className="container mx-auto px-6 relative z-30">
+                    <div className="max-w-4xl mx-auto flex flex-col items-center">
+                        <h1
+                            className="font-black font-luckiest uppercase tracking-widest mb-[20px]"
+                            style={{
+                                fontSize: "clamp(36px, 5vw, 72px)",
+                                lineHeight: "1.1",
+                                color: "#FFF8E6",
+                                textShadow: "0 4px 20px rgba(0,0,0,0.25)",
+                                letterSpacing: "1px"
+                            }}
+                        >
+                            Give Toys a<br />Second Smile
+                        </h1>
+
+                        <p className="font-medium mb-[30px] text-center" style={{
+                            maxWidth: "640px",
+                            margin: "0 auto 30px",
+                            fontSize: "18px",
+                            lineHeight: "1.6",
+                            color: "rgba(255,255,255,0.9)",
+                        }}>
+                            Rent or buy preloved toys from families near you. Safe, affordable, and better for the planet.
+                        </p>
+
+                        <div className="flex flex-col md:flex-row gap-4 justify-center mt-[10px]">
+                            <Link
+                                href="/shop"
+                                className="inline-flex items-center gap-2 text-[#1a1a1a] font-black text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl"
+                                style={{
+                                    background: "linear-gradient(135deg, #ffcc33, #f2a900)",
+                                    boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
+                                    borderRadius: "50px",
+                                    padding: "18px 48px"
+                                }}
+                            >
+                                Browse Toys <ArrowRight className="w-5 h-5" />
+                            </Link>
+                            <Link
+                                href="/sell"
+                                className="inline-flex items-center gap-2 text-white font-bold text-lg transition-all duration-300 border-2 border-white/30 hover:border-white/80 hover:bg-white/10 backdrop-blur-md"
+                                style={{
+                                    borderRadius: "50px",
+                                    padding: "16px 42px",
+                                    textShadow: "0 2px 10px rgba(0,0,0,0.2)"
+                                }}
+                            >
+                                List a Toy
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     );
 }

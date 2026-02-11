@@ -19,10 +19,10 @@ export function WhimsyCreamSection() {
                             color: "#F4B400",
                             filter: "drop-shadow(0 4px 0 rgba(0,0,0,0.1))"
                         }}>
-                        For the Youngest
+                        Perfect for Little Ones
                     </h2>
                     <p className="text-[#8c7e6a] font-medium text-lg max-w-lg mx-auto">
-                        Soft, safe, and huggable companions for your little ones.
+                        Soft, safe, and parent-loved toys for early learning and play.
                     </p>
                 </div>
 

@@ -26,13 +26,19 @@ export function WhimsyProductCard({ toy, bgColor }: { toy: Toy, bgColor?: string
                     )}
                     style={bgColor ? { backgroundColor: bgColor } : {}}
                 >
-                    {/* Inner depth placeholder */}
-                    <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="w-1/2 h-1/2 bg-white/5 rounded-full blur-2xl animate-pulse group-hover:bg-white/10 transition-colors"></div>
+                    {/* Toy Image */}
+                    <Image
+                        src={toy.images[0]}
+                        alt={toy.title}
+                        fill
+                        unoptimized
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
 
                     {/* Badge */}
-                    <div className="absolute top-4 right-4 bg-[#F4B400] text-[#121212] text-[9px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0">
-                        {isRental ? "Rent" : "New"}
+                    <div className="absolute top-4 right-4 bg-[#F4B400] text-[#121212] text-[9px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 z-10">
+                        {toy.condition}
                     </div>
                 </div>
             </Link>
@@ -42,9 +48,19 @@ export function WhimsyProductCard({ toy, bgColor }: { toy: Toy, bgColor?: string
                 <h3 className="text-[14px] font-medium font-heading uppercase tracking-[0.5px] mb-2 truncate transition-colors group-hover:text-white" style={{ color: "#CFCFCF" }}>
                     {toy.title}
                 </h3>
-                <p className="text-2xl font-bold tracking-tight" style={{ color: "#FFC83D" }}>
-                    ₹{toy.price || toy.rentalPricePerDay}
-                </p>
+                <div className="flex items-center justify-center gap-4 text-xs font-bold text-[#FFC83D]">
+                    {toy.type === "rental" ? (
+                        <span>Rent: ₹{toy.rentalPricePerDay}/day</span>
+                    ) : toy.type === "sale" ? (
+                        <span>Buy: ₹{toy.price}</span>
+                    ) : (
+                        <>
+                            <span>Rent: ₹{toy.rentalPricePerDay}/day</span>
+                            <span className="text-white/20">|</span>
+                            <span>Buy: ₹{toy.price}</span>
+                        </>
+                    )}
+                </div>
             </div>
         </div>
     );

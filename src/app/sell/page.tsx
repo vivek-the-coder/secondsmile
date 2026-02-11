@@ -36,7 +36,7 @@ export default function SellToyPage() {
         category: "",
         ageGroup: "",
         condition: "Good",
-        type: "sale",
+        type: "sale" as const,
         price: "",
         rentalPricePerDay: "",
         depositAmount: "",
@@ -86,7 +86,7 @@ export default function SellToyPage() {
                 price: Number(formData.price) || 0,
                 images: imageUrls,
                 ownerId: user.uid,
-                sellerType: profile?.role === "vendor" ? "Store" : "Individual",
+                sellerType: "Individual",
                 rating: 5,
                 reviewsCount: 0,
                 rentalPricePerDay: Number(formData.rentalPricePerDay) || undefined,
@@ -214,29 +214,26 @@ export default function SellToyPage() {
                     {/* Section 2: Pricing & Type */}
                     <Card className="bg-white border-none shadow-sm rounded-[2.5rem] overflow-hidden">
                         <div className="p-8 md:p-12 space-y-8">
-                            <h2 className="text-2xl font-black font-heading text-slate-900">Listing Type & Price</h2>
+                            <h2 className="text-2xl font-black font-heading text-slate-900">Listing Options</h2>
                             <RadioGroup
                                 defaultValue="sale"
-                                className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                                className="grid grid-cols-1 md:grid-cols-2 gap-6"
                                 onValueChange={(val) => setFormData({ ...formData, type: val })}
                             >
-                                <TypeOption id="type-sale" value="sale" label="Sell Used" sub="One-time purchase" />
-                                <TypeOption id="type-rental" value="rental" label="Rent Out" sub="Daily rental fee" />
-                                {profile?.role === "vendor" && (
-                                    <TypeOption id="type-new" value="new" label="Sell New" sub="For Store Owners" special />
-                                )}
+                                <TypeOption id="type-sale" value="sale" label="Sell It" sub="Set a one-time price" />
+                                <TypeOption id="type-rental" value="rental" label="Rent It Out" sub="Earn recurring daily income" />
                             </RadioGroup>
 
                             <div className="grid md:grid-cols-2 gap-8 pt-4">
                                 {formData.type !== "rental" ? (
                                     <div className="space-y-2">
-                                        <Label htmlFor="price" className="text-[10px] uppercase font-black tracking-widest text-slate-400">Asking Price (₹)</Label>
+                                        <Label htmlFor="price" className="text-[10px] uppercase font-black tracking-widest text-slate-400">Selling Price (₹)</Label>
                                         <div className="relative">
                                             <span className="absolute left-6 top-1/2 -translate-y-1/2 font-black text-slate-300">₹</span>
                                             <Input
                                                 id="price"
                                                 type="number"
-                                                placeholder="500"
+                                                placeholder="e.g. 1200"
                                                 className="rounded-2xl bg-slate-50 border-none h-14 pl-10 pr-6 font-black text-lg focus:ring-2 focus:ring-indigo-100"
                                                 required={formData.type !== "rental"}
                                                 value={formData.price}
@@ -247,13 +244,13 @@ export default function SellToyPage() {
                                 ) : (
                                     <>
                                         <div className="space-y-2">
-                                            <Label htmlFor="rentPrice" className="text-[10px] uppercase font-black tracking-widest text-slate-400">Rent / Day (₹)</Label>
+                                            <Label htmlFor="rentPrice" className="text-[10px] uppercase font-black tracking-widest text-slate-400">Daily Rent (₹)</Label>
                                             <div className="relative">
                                                 <span className="absolute left-6 top-1/2 -translate-y-1/2 font-black text-slate-300">₹</span>
                                                 <Input
                                                     id="rentPrice"
                                                     type="number"
-                                                    placeholder="50"
+                                                    placeholder="e.g. 50"
                                                     className="rounded-2xl bg-slate-50 border-none h-14 pl-10 pr-6 font-black text-lg focus:ring-2 focus:ring-indigo-100"
                                                     required={formData.type === "rental"}
                                                     value={formData.rentalPricePerDay}
@@ -262,19 +259,20 @@ export default function SellToyPage() {
                                             </div>
                                         </div>
                                         <div className="space-y-2">
-                                            <Label htmlFor="deposit" className="text-[10px] uppercase font-black tracking-widest text-slate-400">Security Deposit (₹)</Label>
+                                            <Label htmlFor="deposit" className="text-[10px] uppercase font-black tracking-widest text-slate-400">Refundable Deposit (₹)</Label>
                                             <div className="relative">
                                                 <span className="absolute left-6 top-1/2 -translate-y-1/2 font-black text-slate-300">₹</span>
                                                 <Input
                                                     id="deposit"
                                                     type="number"
-                                                    placeholder="500"
+                                                    placeholder="e.g. 1500"
                                                     className="rounded-2xl bg-slate-50 border-none h-14 pl-10 pr-6 font-black text-lg focus:ring-2 focus:ring-indigo-100"
                                                     required={formData.type === "rental"}
                                                     value={formData.depositAmount}
                                                     onChange={(e) => setFormData({ ...formData, depositAmount: e.target.value })}
                                                 />
                                             </div>
+                                            <p className="text-xs text-slate-400 font-medium pl-2">Security deposit returned when toy is returned.</p>
                                         </div>
                                     </>
                                 )}

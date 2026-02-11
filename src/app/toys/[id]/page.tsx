@@ -160,10 +160,9 @@ export default function ToyDetailPage({ params }: { params: Promise<{ id: string
                         <div className="flex items-center gap-3 mb-6">
                             <Badge className={cn(
                                 "px-4 py-1.5 rounded-full font-bold text-[10px] uppercase tracking-widest border-none",
-                                toy.type === "new" ? "bg-emerald-500 text-white" :
-                                    toy.type === "rental" ? "bg-purple-500 text-white" : "bg-orange-500 text-white"
+                                toy.type === "rental" ? "bg-purple-500 text-white" : "bg-emerald-500 text-white"
                             )}>
-                                {toy.type === "new" ? "Store Product" : toy.type}
+                                {toy.type === "rental" ? "For Rent" : "For Sale"}
                             </Badge>
                             <Badge variant="outline" className="px-4 py-1.5 rounded-full text-[10px] uppercase font-bold text-slate-400 border-slate-100">
                                 Condition: {toy.condition}

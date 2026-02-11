@@ -3,10 +3,10 @@
 import { ShieldCheck, RotateCcw, Truck, MessageCircle } from "lucide-react";
 
 const FEATURES = [
-    { title: "Secure Payments", desc: "Your transactions are protected with military-grade encryption.", icon: ShieldCheck },
-    { title: "Easy Returns", desc: "Not happy? Hassle-free 30-day returns on every single toy.", icon: RotateCcw },
-    { title: "Free Shipping", desc: "Fast and reliable delivery on all orders over ₹999.", icon: Truck },
-    { title: "Online Support", desc: "Our friendly experts are here to help you 24/7.", icon: MessageCircle },
+    { title: "Trusted Community", desc: "Profiles, ratings, and verified users you can trust.", icon: ShieldCheck },
+    { title: "More Play, Less Cost", desc: "Access more toys for less. Save money, play more.", icon: RotateCcw },
+    { title: "Flexible Rentals", desc: "Short-term fun without the long-term clutter.", icon: Truck },
+    { title: "Better for the Planet", desc: "Give toys a second life and reduce plastic waste.", icon: MessageCircle },
 ];
 
 export function WhimsyFeaturesStrip() {
