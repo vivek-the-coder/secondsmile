@@ -8,7 +8,14 @@ import { cn } from "@/lib/utils";
 
 export function ToyCard({ toy }: { toy: Toy }) {
     const isRental = toy.type === "rental";
-    const isNew = toy.type === "new";
+
+    // Determine card variant for styling
+    let variant: "new" | "rental" | "used" = "used";
+    if (toy.type === "rental") {
+        variant = "rental";
+    } else if (toy.condition === "New") {
+        variant = "new";
+    }
 
     // Brand Palette: Indigo, Coral, Yellow
     const colorMap = {
@@ -16,10 +23,8 @@ export function ToyCard({ toy }: { toy: Toy }) {
         rental: "bg-[#EEF2FF] text-[#5B5FEF] border-indigo-100",
         used: "bg-orange-50 text-orange-600 border-orange-100"
     };
-
-    const typeKey = (toy.type as "new" | "rental" | "used") || "used";
-    const badgeClass = colorMap[typeKey];
-    const badgeText = isRental ? "RENT" : isNew ? "NEW" : "USED";
+    const badgeClass = colorMap[variant];
+    const badgeText = variant === "rental" ? "RENT" : variant === "new" ? "NEW" : "USED";
 
     return (
         <div className="group bg-white rounded-[2.5rem] p-5 border border-slate-100 hover:shadow-[0_32px_64px_-16px_rgba(91,95,239,0.12)] hover:-translate-y-2 transition-all duration-500 h-full flex flex-col active:scale-[0.98]">
