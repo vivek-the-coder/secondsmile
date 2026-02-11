@@ -36,7 +36,7 @@ export default function SellToyPage() {
         category: "",
         ageGroup: "",
         condition: "Good",
-        type: "sale" as const,
+        type: "sale" as "sale" | "rental" | "both",
         price: "",
         rentalPricePerDay: "",
         depositAmount: "",
@@ -218,7 +218,7 @@ export default function SellToyPage() {
                             <RadioGroup
                                 defaultValue="sale"
                                 className="grid grid-cols-1 md:grid-cols-2 gap-6"
-                                onValueChange={(val) => setFormData({ ...formData, type: val })}
+                                onValueChange={(val) => setFormData({ ...formData, type: val as "sale" | "rental" | "both" })}
                             >
                                 <TypeOption id="type-sale" value="sale" label="Sell It" sub="Set a one-time price" />
                                 <TypeOption id="type-rental" value="rental" label="Rent It Out" sub="Earn recurring daily income" />
@@ -235,7 +235,7 @@ export default function SellToyPage() {
                                                 type="number"
                                                 placeholder="e.g. 1200"
                                                 className="rounded-2xl bg-slate-50 border-none h-14 pl-10 pr-6 font-black text-lg focus:ring-2 focus:ring-indigo-100"
-                                                required={formData.type !== "rental"}
+                                                required
                                                 value={formData.price}
                                                 onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                                             />
@@ -252,7 +252,7 @@ export default function SellToyPage() {
                                                     type="number"
                                                     placeholder="e.g. 50"
                                                     className="rounded-2xl bg-slate-50 border-none h-14 pl-10 pr-6 font-black text-lg focus:ring-2 focus:ring-indigo-100"
-                                                    required={formData.type === "rental"}
+                                                    required
                                                     value={formData.rentalPricePerDay}
                                                     onChange={(e) => setFormData({ ...formData, rentalPricePerDay: e.target.value })}
                                                 />
