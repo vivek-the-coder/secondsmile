@@ -35,10 +35,14 @@ export function WhimsyHero() {
                     autoPlay
                     muted
                     playsInline
+                    preload="metadata"
+                    poster="/images/hero-poster.jpg"
                     className={cn("w-full h-full object-cover transition-opacity duration-500", !showIntro ? "opacity-0 invisible" : "opacity-100 visible")}
                     onEnded={() => setShowIntro(false)}
                 >
-                    <source src="/images/A_soft_cinematic_1080p_202602110039.mp4" type="video/mp4" />
+                    <source src="/images/intro-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
+                    <source src="/images/intro-small.webm" type="video/webm" />
+                    <source src="/images/intro-optimized-small.mp4" type="video/mp4" />
                 </video>
 
                 {/* Loop Video - Starts playing once intro ends */}
