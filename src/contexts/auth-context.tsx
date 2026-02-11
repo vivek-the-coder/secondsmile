@@ -45,7 +45,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setUser(user);
 
-            if (user) {
+            if (user && db) {
                 // Sync/Fetch user profile from Firestore
                 const userDocRef = doc(db, "users", user.uid);
 
