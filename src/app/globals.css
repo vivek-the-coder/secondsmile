@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.text-layered {
+  text-shadow:
+    -1px -1px 0 #0F0F0F,
+    1px -1px 0 #0F0F0F,
+    -1px 1px 0 #0F0F0F,
+    1px 1px 0 #0F0F0F,
+    2px 2px 0 #0F0F0F,
+    3px 3px 0 #0F0F0F,
+    4px 4px 0 #0F0F0F,
+    5px 5px 0 #0F0F0F;
+}
+
+.text-layered-white {
+  text-shadow:
+    -1px -1px 0 #0F0F0F,
+    1px -1px 0 #0F0F0F,
+    -1px 1px 0 #0F0F0F,
+    1px 1px 0 #0F0F0F,
+    2px 2px 0 #0F0F0F,
+    3px 3px 0 #0F0F0F,
+    4px 4px 0 #0F0F0F,
+    5px 5px 0 #0F0F0F;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 7%;
+    /* #121212 */
+    --foreground: 0 0% 100%;
+    --card: 0 0% 12%;
+    /* #1F1F1F */
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 44 100% 48%;
+    /* #F4B400 */
+    --primary-foreground: 0 0% 7%;
+    --secondary: 38 61% 92%;
+    /* #F7EEDF */
+    --secondary-foreground: 0 0% 7%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 44 100% 48%;
+    --accent-foreground: 0 0% 7%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 17%;
+    /* #2C2C2C */
+    --input: 0 0% 17%;
+    --ring: 44 100% 48%;
+    --radius: 1.75rem;
+
+    /* Custom Warm Play Palette */
+    --toy-yellow: #F4B400;
+    --toy-yellow-hover: #E0A106;
+    --toy-yellow-light: #FFD465;
+    --toy-yellow-dark: #C98F00;
+
+    --rich-dark: #121212;
+    --soft-dark: #181818;
+    --card-dark: #1F1F1F;
+    --inner-surface: #262626;
+
+    --bg-cream: #F7EEDF;
+    --card-cream: #FFF6E8;
+    --soft-border: #E8D8C2;
+
+    --mint: #7AD5C0;
+    --peach: #F4A57C;
+    --sky: #7BBEEA;
+    --lavender: #B996F2;
+    --strawberry: #FF7A7A;
+  }
+}
+
+@layer components {
+  .btn-toy-primary {
+    @apply relative inline-flex items-center justify-center transition-all duration-200 transform active:translate-y-1;
+    background: linear-gradient(180deg, #FFD45A 0%, #F4B400 100%);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35), 0 2px 0 rgba(255, 255, 255, 0.2) inset;
+    border-radius: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .btn-toy-primary:hover {
+    @apply -translate-y-[2px];
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4), 0 2px 0 rgba(255, 255, 255, 0.25) inset;
+  }
+
+  .btn-toy-secondary {
+    @apply relative inline-flex items-center justify-center transition-all duration-200 transform active:translate-y-0.5;
+    background: #1F1F1F;
+    border: 1px solid #2C2C2C;
+    box-shadow: 0 4px 0 #000000;
+    border-radius: 16px;
+    font-weight: 700;
+  }
+
+  .btn-toy-secondary:hover {
+    @apply -translate-y-[1px] bg-[#262626];
+    box-shadow: 0 5px 0 #000000;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-[#0F0F0F] text-white antialiased selection:bg-[#F4B400] selection:text-[#0F0F0F];
+    font-family: var(--font-fredoka), sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+.font-heading {
+  font-family: var(--font-fredoka), sans-serif;
+}
+
+.font-luckiest {
+  font-family: var(--font-luckiest-guy), cursive;
+}
+
+/* Scalloped Wave Masking Utilities - Precise Half Circles */
+.mask-scallop-bottom {
+  mask-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0 A 20 20 0 0 1 40 0 V 20 H 0 Z' fill='%23000'/%3E%3C/svg%3E");
+  mask-size: 30px 15px;
+  mask-repeat: repeat-x;
+}
+
+.mask-scallop-top {
+  mask-image: url("data:image/svg+xml,%3Csvg width='40' height='20' viewBox='0 0 40 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 A 20 20 0 0 0 40 20 V 0 H 0 Z' fill='%23000'/%3E%3C/svg%3E");
+  mask-size: 30px 15px;
+  mask-repeat: repeat-x;
+}
+
+.font-body {
+  font-family: var(--font-inter), sans-serif;
+}
+
+.keedos-blue {
+  color: #7C9DFF;
+}
+
+.bg-keedos-blue {
+  background-color: #7C9DFF;
+}
+
+.keedos-red {
+  color: #FF7C7C;
+}
+
+.bg-keedos-red {
+  background-color: #FF7C7C;
+}
+
+.keedos-green {
+  color: #00D094;
+}
+
+.bg-keedos-green {
+  background-color: #00D094;
+}
+
+.keedos-purple {
+  color: #9D7CFF;
+}
+
+.bg-keedos-purple {
+  background-color: #9D7CFF;
+}
+
+.shadow-keedos {
+  box-shadow: 0 10px 30px -10px rgba(124, 157, 255, 0.3);
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-30px) rotate(5deg);
+  }
+}
+
+@keyframes bounce-slow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 4s ease-in-out infinite;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.noise-pattern {
+  position: relative;
+}
+
+.noise-pattern::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+}
